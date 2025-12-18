@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Scanner code - keep private!
+complete_nft_scanner.py
+my-nft-scanner/
+
+# Local files
+sent_items.json
+nft_scanner.log

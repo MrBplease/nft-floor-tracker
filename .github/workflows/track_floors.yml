@@ -1,0 +1,42 @@
+name: Track NFT Floor Prices
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Enable manual trigger
+
+jobs:
+  track-floors:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+    - name: 📥 Checkout repository
+      uses: actions/checkout@v4
+    
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: 📦 Install dependencies
+      run: pip install requests
+    
+    - name: 📊 Track floor prices
+      run: python track_floors.py
+    
+    - name: 📈 Show statistics
+      run: python track_floors.py --stats
+    
+    - name: 💾 Commit database
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add nft_floors.db
+        git diff --staged --quiet || git commit -m "📊 Update floors - $(date +'%Y-%m-%d')"
+    
+    - name: 🚀 Push changes
+      run: git push
