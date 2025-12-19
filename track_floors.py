@@ -42,7 +42,7 @@ def get_stats(collection):
 def track_floors():
     conn = init_database()
     ts = datetime.now()
-    print(f"\n{'='*60}\nTracking Floor Prices - {ts.strftime('%Y-%m-%d %H:%M:%S'^^)}\n{'='*60}\n")
+    print(f"\n{'='*60}\nTracking Floor Prices - {ts.strftime('%Y-%m-%d %H:%M:%S')}\n{'='*60}\n")
     success = 0
     for col in COLLECTIONS:
         print(f"Fetching: {col}...", end=" ")
